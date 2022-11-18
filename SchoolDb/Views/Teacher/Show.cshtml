@@ -1,0 +1,16 @@
+﻿@model SchoolDb.Models.Teacher
+@{
+    ViewBag.Title = "Show";
+}
+
+<div>
+    <a class="navlink" href="/Teacher/List">Back To Teachers</a>
+</div>
+<div id="containershow">
+    <h2>Name: @Model.TeacherFname @Model.TeacherLname</h2>
+    <div>Salary: $@Model.Salary</div>
+    <div>Hire Date: @Model.HireDate</div>
+     
+</div>
+
+
