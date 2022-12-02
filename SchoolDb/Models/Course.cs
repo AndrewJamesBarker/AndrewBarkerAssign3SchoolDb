@@ -10,10 +10,12 @@ namespace SchoolDb.Models
         //the following fields define a Course
         public int ClassId;
         public string ClassCode;
-       // public int TeacherId;
+        //public Int64 TeacherId;
         public DateTime StartDate;
         public DateTime FinishDate;
         public string ClassName;
 
+        //parameter-less contructor function
+        public Course() { }
     }
 }

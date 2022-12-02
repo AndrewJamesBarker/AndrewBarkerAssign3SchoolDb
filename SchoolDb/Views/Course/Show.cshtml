@@ -3,16 +3,16 @@
     ViewBag.Title = "Show";
 }
 
-<div>
-    <a class="navlink" href="/Course/List">Back To Courses</a>
-</div>
-
-
 <div id="containershow">
+    <nav>
+        <a class="navlink" href="/Course/List">Back To Classes</a>
+        <a class="dellink" href="/Course/DeleteConfirm/@Model.ClassId">Delete</a>
+    </nav>
     <h2>Course Name: @Model.ClassName</h2>
     <div>Course Code: @Model.ClassCode</div>
+    @*<div>Course Code: @Model.TeacherId</div>*@
     <div>Couse ID: @Model.ClassId</div>
-    <div>Start Date: @Model.StartDate</div>
-    <div>Finish Date: @Model.FinishDate</div>
+    <div style="font-style:italic;">Start Date: @Model.StartDate.ToString("dd-MMM-yyyy")</div>
+    <div style="font-style:italic;">Finish Date: @Model.FinishDate.ToString("dd-MMM-yyyy")</div>
 </div>
 

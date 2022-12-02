@@ -46,14 +46,14 @@ namespace SchoolDb.Controllers
             MySqlDataReader ResultSet = cmd.ExecuteReader();
 
             //create an empty list of Courses
-            List<Course> Courses = new List<Course> {};
+            List<Course> Courses = new List<Course> { };
 
             while (ResultSet.Read())
             {
                 //access column information by the db column name as an index
                 int ClassId = (int)ResultSet["classid"];
                 string ClassCode = (string)ResultSet["classcode"];
-                //int TeacherId = (int)ResultSet["teacherid"];
+                //Int64 TeacherId = (Int64)ResultSet["teacherid"];
                 DateTime StartDate = (DateTime)ResultSet["startdate"];
                 DateTime FinishDate = (DateTime)ResultSet["finishdate"];
                 string ClassName = (string)ResultSet["classname"];
@@ -61,7 +61,7 @@ namespace SchoolDb.Controllers
                 Course NewCourse = new Course();
                 NewCourse.ClassId = ClassId;
                 NewCourse.ClassCode = ClassCode;
-               // NewCourse.TeacherId = TeacherId;
+                //NewCourse.TeacherId = TeacherId;
                 NewCourse.StartDate = StartDate;
                 NewCourse.FinishDate = FinishDate;
                 NewCourse.ClassName = ClassName;
@@ -92,8 +92,8 @@ namespace SchoolDb.Controllers
             //establish a new command queery for our database
             MySqlCommand cmd = Conn.CreateCommand();
 
-            //SQL Quesry
-            cmd.CommandText = "Select * from classes where classid = "+id;
+            //SQL Query
+            cmd.CommandText = "Select * from classes where classid = " + id;
 
             //Gather Result set of query into variable
             MySqlDataReader ResultSet = cmd.ExecuteReader();
@@ -103,14 +103,14 @@ namespace SchoolDb.Controllers
                 //access column information by the db column name as an index
                 int ClassId = (int)ResultSet["classid"];
                 string ClassCode = (string)ResultSet["classcode"];
-                //int TeacherId = (int)ResultSet["teacherid"];
+                //Int64 TeacherId = (Int64)ResultSet["teacherid"];
                 DateTime StartDate = (DateTime)ResultSet["startdate"];
                 DateTime FinishDate = (DateTime)ResultSet["finishdate"];
                 string ClassName = (string)ResultSet["classname"];
 
                 NewCourse.ClassId = ClassId;
                 NewCourse.ClassCode = ClassCode;
-                // NewCourse.TeacherId = TeacherId;
+                //NewCourse.TeacherId = TeacherId;
                 NewCourse.StartDate = StartDate;
                 NewCourse.FinishDate = FinishDate;
                 NewCourse.ClassName = ClassName;
@@ -118,5 +118,67 @@ namespace SchoolDb.Controllers
 
             return NewCourse;
         }
+        /// <summary>
+        /// deletes a course by course id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <example>POST: /api/CoursesData/DeleteCourse/3</example>
+        [HttpPost]
+        public void DeleteCourse(int id)
+        {
+            //create an instance of a connection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //open the connection between server and database
+            Conn.Open();
+
+            //establish a new command queery for our database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL Query
+            cmd.CommandText = "Delete from classes where classid=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            Conn.Close();
+        }
+
+        /// <summary>
+        /// adds new course object with all criteria except teacher id foreign key
+        /// </summary>
+        /// <param name="NewCourse"></param>
+        /// <example>POST: curl -H "Content-Type: application/json" -d "{\"ClassCode\":\"Test Class\",\"StartDate\":
+        /// \"june 3 2023\",\"FinishDate\":\"june 4 2023\",\"ClassName\":\"how to test asp.net\"}" </example>
+        [HttpPost]
+        public void AddCourse([FromBody]Course NewCourse)
+        {
+            //create an instance of a connection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //open the connection between server and database
+            Conn.Open();
+
+            //establish a new command queery for our database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL Query
+            cmd.CommandText = "insert into classes (classcode, startdate, finishdate, classname) value (@ClassCode, @StartDate,@FinishDate,@ClassName)";
+            cmd.Parameters.AddWithValue("@ClassCode", NewCourse.ClassCode);
+            //cmd.Parameters.AddWithValue("@TeacherId", NewCourse.TeacherId);
+            cmd.Parameters.AddWithValue("@StartDate", NewCourse.StartDate);
+            cmd.Parameters.AddWithValue("@FinishDate",NewCourse.FinishDate );
+            cmd.Parameters.AddWithValue("@ClassName", NewCourse.ClassName);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            Conn.Close();
+
+        }
+      
+
+
     }
 }

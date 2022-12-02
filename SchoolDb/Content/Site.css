@@ -18,11 +18,19 @@ textarea {
     max-width: 280px;
 }
 
+nav {
+    overflow: hidden;
+}
+
 .navlink {
-    padding-left: 15px;
-    text-align: left;
-    margin-top: 30px;
     float: left;
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+
+.dellink {
+    float: right; 
+    color: #dd1111;
 }
 
 #containerlist, #containershow {
@@ -35,3 +43,10 @@ textarea {
     margin: 20px 0;
 }
 
+.deleteButton {
+    background-color: #dd1111;
+    color: #fff;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 4px 7px;
+}

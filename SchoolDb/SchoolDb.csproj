@@ -244,6 +244,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -262,6 +263,11 @@
     <Content Include="Views\Teacher\Show.cshtml" />
     <Content Include="Views\Course\List.cshtml" />
     <Content Include="Views\Course\Show.cshtml" />
+    <Content Include="Views\Course\DeleteConfirm.cshtml" />
+    <Content Include="Views\Course\New.cshtml" />
+    <Content Include="Views\Teacher\DeleteConfirm.cshtml" />
+    <Content Include="Views\Teacher\New.cshtml" />
+    <Content Include="Views\Teacher\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
