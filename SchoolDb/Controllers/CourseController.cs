@@ -57,22 +57,22 @@ namespace SchoolDb.Controllers
         }
 
         //POST : /Course/Create
-        public ActionResult Create(string ClassCode,  DateTime StartDate, DateTime FinishDate, string ClassName)
+        public ActionResult Create(string ClassCode, int TeacherId,  DateTime StartDate, DateTime FinishDate, string ClassName)
         {
-            //make sur its running
+            //make sure its running
             //identify the inputs provided from the form
 
 
             Debug.WriteLine("I Have accessed the create method!");
             Debug.WriteLine(ClassCode);
-            //Debug.WriteLine(TeacherId);
+            Debug.WriteLine(TeacherId);
             Debug.WriteLine(StartDate);
             Debug.WriteLine(FinishDate);
             Debug.WriteLine(ClassName);
 
             Course NewCourse = new Course();
             NewCourse.ClassCode = ClassCode;
-            //NewCourse.TeacherId = TeacherId;
+            NewCourse.TeacherId = TeacherId;
             NewCourse.StartDate = StartDate;
             NewCourse.FinishDate = FinishDate;
             NewCourse.ClassName = ClassName;

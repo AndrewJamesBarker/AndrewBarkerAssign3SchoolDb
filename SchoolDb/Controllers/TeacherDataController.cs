@@ -59,7 +59,7 @@ namespace SchoolDb.Controllers
             while (ResultSet.Read())
             {
                 //access column info by the db column name as an index
-                int TeacherId = (int)ResultSet["teacherid"];
+                Int32 TeacherId = (Int32)ResultSet["teacherid"];
                 string TeacherFname = (string)ResultSet["teacherfname"];
                 string TeacherLname = (string)ResultSet["teacherLname"];
                 string EmployeeNumber = (string)ResultSet["employeenumber"];
@@ -107,7 +107,7 @@ namespace SchoolDb.Controllers
             while (ResultSet.Read())
             {
                 //access column info by the db column name as an index
-                int TeacherId = (int)ResultSet["teacherid"];
+                Int32 TeacherId = (Int32)ResultSet["teacherid"];
                 string TeacherFname = (string)ResultSet["teacherfname"];
                 string TeacherLname = (string)ResultSet["teacherLname"];
                 string EmployeeNumber = (string)ResultSet["employeenumber"];
@@ -178,7 +178,7 @@ namespace SchoolDb.Controllers
             Conn.Close();
         }
 
-        public void UpdateTeacher(int id, [FromBody]Teacher TeacherInfo)
+        public void UpdateTeacher(Int32 id, [FromBody]Teacher TeacherInfo)
         {
             //create an instance of a connections
             MySqlConnection Conn = School.AccessDatabase();
@@ -197,7 +197,8 @@ namespace SchoolDb.Controllers
             cmd.Parameters.AddWithValue("@EmployeeNumber", TeacherInfo.EmployeeNumber);
             cmd.Parameters.AddWithValue("@Salary", TeacherInfo.Salary);
             cmd.Parameters.AddWithValue("@HireDate", TeacherInfo.HireDate);
-            cmd.Parameters.AddWithValue("@TeacherId", id);
+            cmd.Parameters.AddWithValue("@TeacherId", TeacherInfo.TeacherId);
+            cmd.Parameters.AddWithValue("@id", id);
             cmd.Prepare();
 
             cmd.ExecuteNonQuery();

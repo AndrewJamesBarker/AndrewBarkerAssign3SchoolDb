@@ -121,7 +121,7 @@ namespace SchoolDb.Controllers
         /// </example>
         //Post : /Teacher/Update/{id}
         [HttpPost]
-        public ActionResult Update(int id, string TeacherFname, string TeacherLname, string EmployeeNumber, decimal Salary, DateTime HireDate)
+        public ActionResult Update(Int32 id, string TeacherFname, string TeacherLname, string EmployeeNumber, decimal Salary, DateTime HireDate)
         {
             Teacher TeacherInfo = new Teacher();
             TeacherInfo.TeacherFname = TeacherFname;

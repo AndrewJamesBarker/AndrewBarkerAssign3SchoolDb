@@ -53,7 +53,7 @@ namespace SchoolDb.Controllers
                 //access column information by the db column name as an index
                 int ClassId = (int)ResultSet["classid"];
                 string ClassCode = (string)ResultSet["classcode"];
-                //Int64 TeacherId = (Int64)ResultSet["teacherid"];
+                int TeacherId = ResultSet.GetInt32("teacherid");
                 DateTime StartDate = (DateTime)ResultSet["startdate"];
                 DateTime FinishDate = (DateTime)ResultSet["finishdate"];
                 string ClassName = (string)ResultSet["classname"];
@@ -61,7 +61,7 @@ namespace SchoolDb.Controllers
                 Course NewCourse = new Course();
                 NewCourse.ClassId = ClassId;
                 NewCourse.ClassCode = ClassCode;
-                //NewCourse.TeacherId = TeacherId;
+                NewCourse.TeacherId = TeacherId;
                 NewCourse.StartDate = StartDate;
                 NewCourse.FinishDate = FinishDate;
                 NewCourse.ClassName = ClassName;
@@ -102,15 +102,16 @@ namespace SchoolDb.Controllers
             {
                 //access column information by the db column name as an index
                 int ClassId = (int)ResultSet["classid"];
+                int TeacherId = (int)ResultSet["teacherid"];
                 string ClassCode = (string)ResultSet["classcode"];
-                //Int64 TeacherId = (Int64)ResultSet["teacherid"];
+            
                 DateTime StartDate = (DateTime)ResultSet["startdate"];
                 DateTime FinishDate = (DateTime)ResultSet["finishdate"];
                 string ClassName = (string)ResultSet["classname"];
 
                 NewCourse.ClassId = ClassId;
                 NewCourse.ClassCode = ClassCode;
-                //NewCourse.TeacherId = TeacherId;
+                NewCourse.TeacherId = TeacherId;
                 NewCourse.StartDate = StartDate;
                 NewCourse.FinishDate = FinishDate;
                 NewCourse.ClassName = ClassName;
@@ -164,9 +165,10 @@ namespace SchoolDb.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //SQL Query
-            cmd.CommandText = "insert into classes (classcode, startdate, finishdate, classname) value (@ClassCode, @StartDate,@FinishDate,@ClassName)";
+            cmd.CommandText = "insert into classes (classcode, teacherid, startdate, finishdate, classname) values (@ClassCode, @TeacherId," +
+                " @StartDate,@FinishDate,@ClassName)";
             cmd.Parameters.AddWithValue("@ClassCode", NewCourse.ClassCode);
-            //cmd.Parameters.AddWithValue("@TeacherId", NewCourse.TeacherId);
+            cmd.Parameters.AddWithValue("@TeacherId", NewCourse.TeacherId);
             cmd.Parameters.AddWithValue("@StartDate", NewCourse.StartDate);
             cmd.Parameters.AddWithValue("@FinishDate",NewCourse.FinishDate );
             cmd.Parameters.AddWithValue("@ClassName", NewCourse.ClassName);
