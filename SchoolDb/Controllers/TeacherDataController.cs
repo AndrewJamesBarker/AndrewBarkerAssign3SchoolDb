@@ -84,9 +84,19 @@ namespace SchoolDb.Controllers
             //Return the final list of teacher names and salaries
             return TeacherInfo;
         }
+
+        /// <summary>
+        /// returns details on teacher. id, first and last name, salary and hire date
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>http://localhost:50226/Teacher/Show/2  Name: Caitlin Cummings
+        ///Employee Number: T381
+        ///Salary: $62.77
+        ///Hire Date: 10-Jun-2014</returns>
         [HttpGet]
         public Teacher FindTeacher(int id)
         {
+            
             Teacher NewTeacher = new Teacher();
 
             //create an instance of a connections
@@ -126,7 +136,7 @@ namespace SchoolDb.Controllers
             return NewTeacher;
         }
         /// <summary>
-        /// 
+        /// deletes a teacher from the database
         /// </summary>
         /// <param name="id"></param>
         /// <example>POST : http://localhost:50226/api/TeacherData/DeleteTeacher/3 </example>
@@ -153,6 +163,11 @@ namespace SchoolDb.Controllers
             Conn.Close();
 
         }
+        /// <summary>
+        /// add new teacher to database. id, first and last name, salary and hiredate
+        /// </summary>
+        /// <param name="NewTeacher"></param>
+        /// <returns>takes you back to teacher list</returns>
         [HttpPost]
         public void AddTeacher([FromBody]Teacher NewTeacher)
         {
@@ -177,7 +192,14 @@ namespace SchoolDb.Controllers
             cmd.ExecuteNonQuery();
             Conn.Close();
         }
-
+        /// <summary>
+        /// supposed to allow you to update teacher info, but can't get past id error 
+        /// The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Int32'
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="TeacherInfo"></param>
+        /// <returns>updated info teacher first and last name, id, salary and hiredate.</returns>
+        [HttpPost]
         public void UpdateTeacher(Int32 id, [FromBody]Teacher TeacherInfo)
         {
             //create an instance of a connections

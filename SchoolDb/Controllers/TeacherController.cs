@@ -60,6 +60,16 @@ namespace SchoolDb.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// generates new teacher data
+        /// </summary>
+        /// <param name="TeacherFname"></param>
+        /// <param name="TeacherLname"></param>
+        /// <param name="EmployeeNumber"></param>
+        /// <param name="Salary"></param>
+        /// <param name="HireDate"></param>
+        /// <returns> creates sends new teacher data to be viewed. teacher first and last name, id, salary and hiredate</returns>
         //POST : /Teacher/Create
         [HttpPost]
         public ActionResult Create(string TeacherFname, string TeacherLname, string EmployeeNumber, decimal Salary, DateTime HireDate)
