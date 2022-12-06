@@ -198,9 +198,12 @@ namespace SchoolDb.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <param name="TeacherInfo"></param>
+        /// POST: /api/teacherdata/updateteacher/4
         /// <returns>updated info teacher first and last name, id, salary and hiredate.</returns>
+        /// requests BODY POST DATa
         [HttpPost]
-        public void UpdateTeacher(Int32 id, [FromBody]Teacher TeacherInfo)
+        [Route("api/teacherdata/updateteacher/{id}")]
+        public void UpdateTeacher(int id, [FromBody]Teacher TeacherInfo)
         {
             //create an instance of a connections
             MySqlConnection Conn = School.AccessDatabase();
@@ -213,14 +216,14 @@ namespace SchoolDb.Controllers
 
             //sql query
             cmd.CommandText = "update teachers set teacherfname=@TeacherFname, teacherlname=@TeacherLname," +
-                " employeenumber=@employeenumber, salary=@Salary, hiredate=@HireDate, teacherid=@TeacherId where teacherid=@TeacherId";
+                " employeenumber=@employeenumber, salary=@Salary, hiredate=@HireDate where teacherid =@id";
             cmd.Parameters.AddWithValue("@TeacherFname", TeacherInfo.TeacherFname);
             cmd.Parameters.AddWithValue("@TeacherLname", TeacherInfo.TeacherLname);
             cmd.Parameters.AddWithValue("@EmployeeNumber", TeacherInfo.EmployeeNumber);
             cmd.Parameters.AddWithValue("@Salary", TeacherInfo.Salary);
             cmd.Parameters.AddWithValue("@HireDate", TeacherInfo.HireDate);
-            cmd.Parameters.AddWithValue("@TeacherId", TeacherInfo.TeacherId);
             cmd.Parameters.AddWithValue("@id", id);
+            //cmd.Parameters.AddWithValue("@id", id);
             cmd.Prepare();
 
             cmd.ExecuteNonQuery();

@@ -100,7 +100,7 @@ namespace SchoolDb.Controllers
         /// <param name="id">teacher id</param>
         /// <returns>a dynamic update author page displaying the current teacher info and asking for new info</returns>
         //Get : /Teacher/Update/{id}
-        
+        [HttpGet]
         public ActionResult Update(int id)
         {
             TeacherDataController controller = new TeacherDataController();
@@ -131,7 +131,7 @@ namespace SchoolDb.Controllers
         /// </example>
         //Post : /Teacher/Update/{id}
         [HttpPost]
-        public ActionResult Update(Int32 id, string TeacherFname, string TeacherLname, string EmployeeNumber, decimal Salary, DateTime HireDate)
+        public ActionResult Update(int id, string TeacherFname, string TeacherLname, string EmployeeNumber, decimal Salary, DateTime HireDate)
         {
             Teacher TeacherInfo = new Teacher();
             TeacherInfo.TeacherFname = TeacherFname;
@@ -139,12 +139,12 @@ namespace SchoolDb.Controllers
             TeacherInfo.EmployeeNumber = EmployeeNumber;
             TeacherInfo.Salary = Salary;
             TeacherInfo.HireDate = HireDate;
-            TeacherInfo.TeacherId = id;
+           
 
             TeacherDataController controller = new TeacherDataController();
             controller.UpdateTeacher(id, TeacherInfo);
 
-            return RedirectToAction("Show/");
+            return RedirectToAction("Show/" + id);
         }
     }
 

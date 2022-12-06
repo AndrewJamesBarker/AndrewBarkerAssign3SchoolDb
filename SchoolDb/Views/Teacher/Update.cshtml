@@ -9,7 +9,7 @@
         <a class="navlink" href="/Teacher/Show/@Model.TeacherId">Back</a>
     </nav>
     <h2>Update Teacher</h2>
-    <form method="POST" action="/Teacher/Update">
+    <form method="POST" action="/Teacher/Update/@Model.TeacherId">
         <div>
             <label for="TeacherFname">First Name: </label>
             <input type="text" id="TeacherFname" name="TeacherFname"
@@ -35,11 +35,11 @@
             <input type="datetime" id="HireDate" name="HireDate"
                    value="@Model.HireDate" />
         </div>
-        <div>
+        @*<div>
             <label for="TeacherId">Teacher Id: </label>
-            <input type="datetime" id="TeacherId" name="TeacherId"
+            <input type="number" id="TeacherId" name="TeacherId"
                    value="@Model.TeacherId" />
-        </div>
+        </div>*@
         <div>
             <input type="submit" value="Update Teacher" />
         </div>
