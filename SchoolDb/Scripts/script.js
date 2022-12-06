@@ -1,4 +1,4 @@
-﻿window.onload function() {
+﻿window.onload = function() {
 
 
 
@@ -13,7 +13,7 @@
         var employNumValue = formHandle.EmployeeNumber;
         var salaryValue = formHandle.Salary;
         var hireDateValue = formHandle.HireDate;
-        var hireDateRegex = ^\d{ 4} \-(0 ? [1 - 9] | 1[012]) \-(0 ? [1 - 9] | [12][0 - 9] | 3[01])$;
+    /*    var hireDateRegex = ^\d{ 4} \-(0 ? [1 - 9]| 1[012]) \-(0 ? [1 - 9] | [12][0 - 9] | 3[01])$;*/
 
 
         if (fNameValue.value === "" && lNameValue.value === "" && employNumValue.value === "" && salaryValue.value === "" && hireDateValue.value === "") {
