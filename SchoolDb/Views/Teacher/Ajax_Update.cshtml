@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Ajax_Update";
+}
+
+
+<div id="containershow">
+    <nav>
+        <a class="navlink" href="/Teacher/List/@Model.TeacherI">Back To Teachers</a>
+    </nav>
+    <h2>Update Teacher</h2>
+    @{
+        //AJAX request to update teacher
+        //No Form Submission needed
+        //button will handle submission
+        //each item has an id for validation and ajax submission
+    }
+    <div>
+        <label for="TeacherFname">First Name: </label>
+        <input type="text" id="TeacherFname" name="TeacherFname"
+               value="@Model.TeacherFname" />
+    </div>
+    <div>
+        <label for="TeacherLname">Last Name: </label>
+        <input type="text" id="TeacherLname" name="TeacherLname"
+               value="@Model.TeacherLname" />
+    </div>
+    <div>
+        <label for="EmployeeNumber">Employee Number: </label>
+        <input type="text" id="EmployeeNumber" name="EmployeeNumber"
+               value="@Model.EmployeeNumber" />
+    </div>
+    <div>
+        <label for="Salary">Salary: </label>
+        <input type="text" id="Salary" name="Salary"
+               value="@Model.Salary" />
+    </div>
+    <div>
+        <label for="HireDate">Hire Date: </label>
+        <input type="datetime" id="HireDate" name="HireDate"
+               value="@Model.HireDate" />
+    </div>
+    @{ 
+        //UpdateTeacher() is a js method in /Scripts/authors.js
+    }
+    <button onclick="UpdateTeacher();">Update Teacher</button>
+</div>
+
+

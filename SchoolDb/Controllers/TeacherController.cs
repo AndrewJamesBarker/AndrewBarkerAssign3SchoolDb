@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SchoolDb.Models;
 using System.Diagnostics;
+using System.Web.Http.Cors;
 
 namespace SchoolDb.Controllers
 {
