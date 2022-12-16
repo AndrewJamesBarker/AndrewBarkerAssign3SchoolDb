@@ -7,6 +7,8 @@ using System.Web.Http;
 using SchoolDb.Models;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using System.Text;
+
 
 
 
@@ -171,6 +173,9 @@ namespace SchoolDb.Controllers
         [HttpPost]
         public void AddTeacher([FromBody]Teacher NewTeacher)
         {
+
+            if (!NewTeacher.IsValid()) throw new ApplicationException("Posted Data was not valid.");
+
             //create an instance of a connections
             MySqlConnection Conn = School.AccessDatabase();
 
@@ -205,6 +210,11 @@ namespace SchoolDb.Controllers
         [Route("api/teacherdata/updateteacher/{id}")]
         public void UpdateTeacher(int id, [FromBody]Teacher TeacherInfo)
         {
+            //if (!TeacherInfo.IsValid())
+            //{
+                
+            //}
+
             //create an instance of a connections
             MySqlConnection Conn = School.AccessDatabase();
 
@@ -213,6 +223,7 @@ namespace SchoolDb.Controllers
 
             //establish a new command (query) for our database
             MySqlCommand cmd = Conn.CreateCommand();
+
 
             //sql query
             cmd.CommandText = "update teachers set teacherfname=@TeacherFname, teacherlname=@TeacherLname," +

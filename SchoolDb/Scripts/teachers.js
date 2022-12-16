@@ -2,6 +2,9 @@
 
 
 function UpdateTeacher() {
+
+
+
     //goal: send a request like this:
     //POST : http://localhost:50226/api/TeacherData/UpdateTeacher/
     //with post data of TeacherFname, TeacherLname, EmployeeNumber, Salary, HireDate
@@ -11,7 +14,7 @@ function UpdateTeacher() {
     var rq = new XMLHttpRequest();
     //where is the request sent?
     //is it GET or Post?
-    //what should be done wit the response?
+    //what should be done with the response?
 
     var TeacherFname = document.getElementById('TeacherFname').value;
     var TeacherLname = document.getElementById('TeacherLname').value;
@@ -27,12 +30,13 @@ function UpdateTeacher() {
         "HireDate": HireDate
     };
 
-    rq.open("POST", URL, true);
+    rq.open("GET", URL, true);
     rq.setRequestHeader("Content-Type", "application/json");
     rq.onreadystatechange = function () {
         //ready state should be 4 and status should be 200
         if (rq.readyState == 4 && rq.status == 200) {
             // successful, nothing to render
+            console.log(rq.responseText);
         }
     }
 

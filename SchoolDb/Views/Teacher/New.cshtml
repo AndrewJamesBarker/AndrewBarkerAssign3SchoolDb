@@ -16,22 +16,27 @@
         <div>
             <label for="TeacherFname">First Name: </label>
             <input type="text" id="TeacherFname" name="TeacherFname" />
+            <label id="fNameLabel" for="TeacherFname"></label>
         </div>
         <div>
             <label for="TeacherLname">Last Name: </label>
             <input type="text" id="TeacherLname" name="TeacherLname" />
+            <label id="lNameLabel" for="TeacherLname"></label>
         </div>
         <div>
             <label for="EmployeeNumber">Employee Number: </label>
             <input type="text" id="EmployeeNumber" name="EmployeeNumber" />
+            <label id="eNumberLabel" for="EmployeeNumber"></label>
         </div>
         <div>
             <label for="Salary">Salary: </label>
             <input type="text" id="Salary" name="Salary" />
+            <label id="salaryLabel" for="Salary"></label>
         </div>
         <div>
             <label for="HireDate">Hire Date: </label>
             <input type="datetime" id="HireDate" name="HireDate" placeholder="yyyy-mm-dd" />
+            <label id="hireDateLabel" for="HireDate"></label>
         </div>
         <div>
             <input type="submit" value="Create Teacher" />
@@ -50,6 +55,12 @@
 
             function formValidate() {
 
+                var fNameLabel = document.getElementById("fNameLabel")
+                var lNameLabel = document.getElementById("lNameLabel")
+                var eNumberLabel = document.getElementById("eNumberLabel")
+                var salaryLabel = document.getElementById("salaryLabel")
+                var hireDateLabel = document.getElementById("hireDateLabel")
+
                 var fNameValue = formHandle.TeacherFname;
                 var lNameValue = formHandle.TeacherLname;
                 var employNumValue = formHandle.EmployeeNumber;
@@ -66,26 +77,31 @@
                 if (fNameValue.value === "") {
                     fNameValue.style["background-color"] = "red";
                     fNameValue.focus();
+                    fNameLabel.innerHTML = "Please enter the first name."
                     return false;
                 }
                 if (lNameValue.value === "") {
                     lNameValue.style["background-color"] = "red";
                     lNameValue.focus();
+                    lNameLabel.innerHTML = "Please enter the last name."
                     return false;
                 }
                 if (employNumValue.value === "") {
                     employNumValue.style["background-color"] = "red";
                     employNumValue.focus();
+                    eNumberLabel.innerHTML = "Please enter the employee number."
                     return false;
                 }
                 if (salaryValue.value === "") {
                     salaryValue.style["background-color"] = "red";
                     salaryValue.focus();
+                    salaryLabel.innerHTML = "Please enter the salary."
                     return false;
                 }
                 if (hireDateValue.value === "") {
                     hireDateValue.style["background-color"] = "red";
                     hireDateValue.focus();
+                    hireDateLabel.innerHTML = "Please enter the hire date."
                     return false;
                 }
                 if (!hireDateRegex.test(hireDateValue.value)) {

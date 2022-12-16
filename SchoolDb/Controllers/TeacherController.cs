@@ -140,12 +140,23 @@ namespace SchoolDb.Controllers
             TeacherInfo.EmployeeNumber = EmployeeNumber;
             TeacherInfo.Salary = Salary;
             TeacherInfo.HireDate = HireDate;
-           
-
             TeacherDataController controller = new TeacherDataController();
             controller.UpdateTeacher(id, TeacherInfo);
 
             return RedirectToAction("Show/" + id);
+
+
+
+
+           
+        
+          
+                //TempData["ErrorMessage"] = ex.Message;
+              
+            
+          
+
+          
         }
     }
 
